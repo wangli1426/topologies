@@ -163,34 +163,6 @@
           <groupId>org.clojure</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>clj-time</artifactId>
-          <groupId>clj-time</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>compojure</artifactId>
-          <groupId>compojure</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>hiccup</artifactId>
-          <groupId>hiccup</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ring-devel</artifactId>
-          <groupId>ring</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ring-jetty-adapter</artifactId>
-          <groupId>ring</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ring-json</artifactId>
-          <groupId>ring</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>tools.logging</artifactId>
-          <groupId>org.clojure</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>disruptor</artifactId>
           <groupId>com.googlecode.disruptor</groupId>
         </exclusion>
@@ -208,6 +180,14 @@
         </exclusion>
         <exclusion>
           <artifactId>log4j-over-slf4j</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>servlet-api</artifactId>
+          <groupId>javax.servlet</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
           <groupId>org.slf4j</groupId>
         </exclusion>
       </exclusions>

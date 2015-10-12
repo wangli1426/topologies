@@ -19,7 +19,7 @@ public class PrintBolt extends BaseRichBolt {
 
     @Override
     public void execute(Tuple input) {
-        System.out.println("word----->"+input.getString(0));
+        System.out.format("station:%s\ttime:%s\tmatrix:%s\n",input.getString(0),input.getString(1),input.getString(2));
     }
 
     @Override

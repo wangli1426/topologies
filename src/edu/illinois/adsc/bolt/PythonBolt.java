@@ -18,7 +18,7 @@ public class PythonBolt extends ShellBolt implements IRichBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("word"));
+        declarer.declare(new Fields("station","time","word"));
     }
 
     @Override
