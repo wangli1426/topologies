@@ -1,4 +1,4 @@
-package topologies;
+package edu.illinois.adsc;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
