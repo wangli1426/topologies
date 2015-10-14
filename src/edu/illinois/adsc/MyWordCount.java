@@ -32,8 +32,11 @@ import java.util.*;
 
 public class MyWordCount {
     public static class WordGenerationSpout extends BaseRichSpout {
+
+        private int count = 0;
+
         public WordGenerationSpout(){
-            _emit_cycles=1000;
+            _emit_cycles=0;
             _random.setSeed(System.currentTimeMillis());
             _dictionary.add("One");
             _dictionary.add("Two");
@@ -51,7 +54,11 @@ public class MyWordCount {
         @Override
         public void nextTuple(){
             Utils.sleep(_emit_cycles);
+            long start = System.currentTimeMillis();
+            System.out.print("sending--->");
             _collector.emit(new Values(_dictionary.get(_random.nextInt(_dictionary.size()))));
+            count++;
+            System.out.format("sent %d %d ms\n",count,System.currentTimeMillis() - start);
         }
         SpoutOutputCollector _collector;
         int _emit_cycles;
@@ -61,6 +68,11 @@ public class MyWordCount {
     public static class MyCounter extends BaseBasicBolt {
         @Override
         public void execute(Tuple input, BasicOutputCollector collector){
+            try {
+                Thread.sleep(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             String word = input.getString(0);
             Integer count = _map.get(word);
             if (count == null){
@@ -124,13 +136,15 @@ public class MyWordCount {
     public static void main(String[] args){
         TopologyBuilder builder = new TopologyBuilder();
 
-        builder.setSpout("spout", new WordGenerationSpout(),1);
-        builder.setBolt("counter",new MyCounter(),8).fieldsGrouping("spout", new Fields("word"));
+        builder.setSpout("spout", new WordGenerationSpout(), 1);
+        builder.setBolt("counter",new MyCounter(),1).fieldsGrouping("spout", new Fields("word"));
         builder.setBolt("printer", new ReportBolt(),1).globalGrouping("counter");
 
 
         Config conf = new Config();
         conf.setDebug(false);
+        conf.put("backpressure.disruptor.high.watermark", 0.9);
+        conf.put("backpressure.disruptor.low.watermark",0.85);
 
         if(args != null && args.length >0){
             conf.setNumWorkers(3);
@@ -149,7 +163,7 @@ public class MyWordCount {
             LocalCluster cluster = new LocalCluster();
             cluster.submitTopology("Word-count", conf, builder.createTopology());
 
-            Utils.sleep(10000);
+            Utils.sleep(10000000);
             cluster.shutdown();
         }
 
