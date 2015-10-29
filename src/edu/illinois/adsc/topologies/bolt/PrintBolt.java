@@ -1,4 +1,4 @@
-package edu.illinois.adsc.bolt;
+package edu.illinois.adsc.topologies.bolt;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;

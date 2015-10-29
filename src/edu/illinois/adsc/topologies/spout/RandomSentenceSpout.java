@@ -1,4 +1,4 @@
-package edu.illinois.adsc.spout;
+package edu.illinois.adsc.topologies.spout;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;

@@ -1,12 +1,12 @@
-package edu.illinois.adsc;
+package edu.illinois.adsc.topologies;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
-import edu.illinois.adsc.bolt.PrintBolt;
-import edu.illinois.adsc.bolt.PythonBolt;
-import edu.illinois.adsc.spout.RandomSentenceSpout;
+import edu.illinois.adsc.topologies.bolt.PrintBolt;
+import edu.illinois.adsc.topologies.bolt.PythonBolt;
+import edu.illinois.adsc.topologies.spout.RandomSentenceSpout;
 
 /**
  * Created by Robert on 10/12/15.
